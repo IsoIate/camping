@@ -8,6 +8,6 @@ let userData = createSlice({
 
 export default configureStore({
     reducer: {
-        session: userData.session
+        session: userData.session 
     }
 }) 
