@@ -1,0 +1,38 @@
+/* notice  */
+
+.noticeImage {
+    height: 20vh;
+    background-color: bisque;
+}
+
+.noticeTable {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.noticeTable .row div:first-child {
+    border-left: none;
+}
+
+.noticeTable .row div {
+    border-left: 1px solid black;
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.noticeBottom {
+    
+}
+
+.noticeBtns button {
+    margin-left: 5px;
+}
+
+
+/* footer */
+
+.footerContent {
+    background-color: aqua;
+    height: 15vh;
+}
