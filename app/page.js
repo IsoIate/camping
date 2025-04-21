@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default function Home() {
+export default function Home({session}) {
+
+  // console.log(session)
 
   return (
     <>

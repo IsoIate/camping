@@ -2,10 +2,10 @@
 
 import Image from "next/image"
 import Test01 from "@/public/test01.png"
-import { useParams } from "next/navigation"
-import Update from "@/app/common/Update"
+import { useParams, useSearchParams } from "next/navigation"
+import View from '@/app/common/View'
 
-export default function NoticeView() {
+export default function FreeboardView() {
 
     const params = useParams();
     const id = params.id.toString();
@@ -17,7 +17,7 @@ export default function NoticeView() {
                     <Image src={Test01} alt="" style={{ width: '100%', height: '20vh' }}></Image>
                 </div>
             </div>
-            <Update id = {id} type = {"notice"}></Update>
+            <View id = { id } type = { "freeboard" }></View>
         </>
     )
 }

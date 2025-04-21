@@ -1,13 +1,20 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
 
-let userData = createSlice({
-    session: await getServerSession(authOptions)
+const imageSlice = createSlice({
+    name: 'temp',
+    initialState: { img: '', te: ''},
+    reducers: {
+        setImg: (state, action) => {
+            state.img = action.payload;
+        },
+        setTe: (state, action) => {
+            state.te = action.payload;
+        }
+    }
 })
 
+export const {setImg, setTe} = imageSlice.actions;
 export default configureStore({
-    reducer: {
-        session: userData.session
-    }
+
+  reducer: { }
 }) 

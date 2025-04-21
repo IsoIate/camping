@@ -26,6 +26,9 @@ export default function Navbar({ session }) {
                                 <a className="nav-link" href="/freeboard"> 자유게시판 </a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="/reserve"> 예약하기 </a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="/location"> 오시는길 </a>
                             </li>
                         </ul>

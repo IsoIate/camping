@@ -1,55 +1,37 @@
 'use client'
 
-import Image from "next/image"
 import React, { useEffect, useState } from "react"
-import Test01 from "../../public/test01.png"
 import Link from "next/link"
-import styled from 'styled-components'
 import axios from "axios"
-// import { authOptions } from "@/pages/api/auth/[...nextauth]"
+import { boardTitle } from "./common"
 
-let contents = styled.a`
-    text-decoration: none;
-    color: black;
-`
+export default function Items({ session, type }) {
 
-export default function NoticeItem({ session }) {
-    let [noticeArray, setNoticeArray] = useState([]);
-
-    let userRole = session != null ? session.user.role : "" ;
+    let [dataArray, setDataArray] = useState([]);
+    let userRole = session != null ? session.user.role : "";
 
     useEffect(() => {
-        axios.get('/api/get/notice',
+        axios.get(`/api/get/${type}`,
             {
                 params: {
-                    type: 'notice'
+                    type: `${type}`,
+                    entire: 'Y'
                 }
             }
         )
             .then((res) => {
-                setNoticeArray(res.data);
+                setDataArray(res.data);
             })
             .catch((e) => {
                 alert(`에러가 발생했습니다.\n에러 : ${e.message}`)
             });
     }, [])
 
-    function readNotice(id) {
-
-
-        location.href = "/noticeWrite"
-    }
-
     return (
         <>
-            <div className="noticeTop">
-                <div className="noticeImage mb-5">
-                    <Image src={Test01} alt="" style={{ width: '100%', height: '20vh' }}></Image>
-                </div>
-            </div>
             <div className="noticeBody my-3 container">
                 <div className="text-center">
-                    <h2 className="mb-5"> 공지사항 </h2>
+                    <h2 className="mb-5"> {boardTitle[type]} </h2>
                 </div>
 
                 <div className="container">
@@ -77,9 +59,9 @@ export default function NoticeItem({ session }) {
                         </div>
                         <div className="card-body min-vh-30">
                             {
-                                noticeArray.map((data, index) => {
+                                dataArray.map((data, index) => {
                                     return (
-                                        <Link href={`/noticeView/${data._id}`} style={{ textDecoration: "none", color: "black" }} key={index}>
+                                        <Link href={`/${type}View/${data._id}`} style={{ textDecoration: "none", color: "black" }} key={index}>
                                             <div className="card-body row">
                                                 <div className="col-1 text-center" style={{ paddingLeft: 0 }}> {data.no} </div>
                                                 <div className="col-5 text-center"> {data.title} </div>
@@ -95,10 +77,13 @@ export default function NoticeItem({ session }) {
                         <div className="card-footer text-body-secondary">
                             <div className="col text-end noticeBtns">
                                 {
-                                    userRole != "admin" ? 
-                                        <div style={{height : "38px"}}></div>
-                                        :
+                                    userRole == "admin" ?
                                         <Link href="/noticeWrite"><button type="button" className="btn btn-primary" > 글쓰기 </button></Link>
+                                        :
+                                        type == "freeboard" && userRole != "" ?
+                                            <Link href="/freeboardWrite"><button type="button" className="btn btn-primary" > 글쓰기 </button></Link>
+                                            :
+                                            <div style={{ height: "38px" }}></div>
                                 }
                             </div>
                         </div>
