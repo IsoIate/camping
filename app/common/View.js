@@ -4,8 +4,10 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { boardTitle } from "./common"
+import { useSession } from "next-auth/react"
+import Comment from "./comment"
 
-export default function View({id, type}) {
+export default function View({ id, type }) {
 
     let [dataArray, setDataArray] = useState({});
 
@@ -64,7 +66,7 @@ export default function View({id, type}) {
                                 <label className="col-form-label"> 3 </label>
                             </div>
                         </div>
-                        <div className="card-body" style={{height : "30vh"}}>
+                        <div className="card-body" style={{ height: "30vh" }}>
                             <h5 className="card-title">{dataArray.content || ''}</h5>
                         </div>
                         <div className="card-footer text-body-secondary">
@@ -76,6 +78,9 @@ export default function View({id, type}) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="my-3">
+                <Comment id={id} type={type} ></Comment>
             </div>
         </>
     )

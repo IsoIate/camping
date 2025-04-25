@@ -5,6 +5,7 @@ import Footer from "./footer";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { Provider } from 'react-redux';
+import { SessionProvider } from 'next-auth'
 import store from '@/app/store'
 
 
@@ -34,9 +35,11 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} d-flex flex-column min-vh-100`}>
         {/* <Provider store={store}> */}
+        {/* <SessionProvider session={session}> */}
           <Navbar session={session}></Navbar>
           {children}
           <Footer></Footer>
+        {/* </SessionProvider> */}
         {/* </Provider> */}
       </body>
     </html>

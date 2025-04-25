@@ -1,12 +1,16 @@
 
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
+
 import Items from "../common/Items"
 import Image from "next/image"
 import Test01 from "../../public/test01.png"
 
 export default async function Notice() {
     let session = await getServerSession(authOptions)
+    console.log(session)
+
+    
 
     return (
         <>
